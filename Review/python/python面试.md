@@ -62,3 +62,61 @@ a[4].append('c')
 　　\_\_new__()必须有返回值，返回实例对象；
 
 　　\_\_init__()不需要返回值。
+
+
+
+## 4、python拼接字符串的方法
+
+![1567583759709](C:\Users\ziji\AppData\Roaming\Typora\typora-user-images\1567583759709.png)
+
+
+
+##5、@staticmethod和@classmethod
+
+Python其实有3个方法,即静态方法(staticmethod),类方法(classmethod)和实例方法,如下:
+
+```python
+def foo(x):
+    print "executing foo(%s)"%(x)
+
+class A(object):
+    def foo(self,x):
+        print "executing foo(%s,%s)"%(self,x)
+
+    @classmethod
+    def class_foo(cls,x):
+        print "executing class_foo(%s,%s)"%(cls,x)
+
+    @staticmethod
+    def static_foo(x):
+        print "executing static_foo(%s)"%x
+
+a=A()
+```
+
+ 定义这些方法时的区别:
+
+1、类的普通方法，需要一个self参数表示自身
+
+2、@staticmethod不需要表示自身对象的self和自身类的cls参数，就跟使用函数一样
+
+3、@classmethod也不需要表示自身对象的self参数，但需要有表示自身类的参数cls
+
+
+
+方法内部：
+
+1. 如果在@staticmethod中要调用到这个类的一些属性方法，只能直接类名.属性名或类名.方法名。
+2. 而@classmethod因为持有cls参数，可以来调用类的属性，类的方法，实例化对象等，避免硬编码。
+3. 如果需要调用带self的方法，必须得先对类进行实例化。
+
+应用场景：
+
+1、如果在方法中不需要访问任何实例方法和属性，纯粹地通过传入参数并返回数据的功能性方法，那么就适合用静态方法来定义，节省了实例化对象的开销成本
+
+2、如果定义了静态方法的类为父类，那么如果这个父类被删除了，调用子类方法的时候就会报错
+
+
+
+[链接](https://blog.csdn.net/changkai456/article/details/80372198)
+
