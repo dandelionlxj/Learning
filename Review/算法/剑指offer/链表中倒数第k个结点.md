@@ -6,7 +6,7 @@
 
  **算法**  
  ```python
- # -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 # class ListNode:
 #     def __init__(self, x):
 #         self.val = x
@@ -19,16 +19,12 @@ class Solution:
             return None
         p = head
         q = head
-        
-        while k > 1:
-            if p.next != None:
-                p = p.next
-                k-=1
-            else:
-                return None
-        while p.next != None:
-            q=q.next
+        i=0
+        while p:
+            if i>=k:
+                q=q.next
             p=p.next
-        return q
+            i+=1
+        return q if i>=k else None
  ```
 
