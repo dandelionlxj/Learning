@@ -1,0 +1,15 @@
+环境：从Windows吧Django项目放到了GitHub上，再把项目克隆到了centos上，Django+uwsgi+Nginx
+
+1、在Windows上时，就先运行命令生成一个文件，里面放着项目依赖的环境
+
+2、然后git clone项目到centos上，再运行这个文件，安装项目需要的包
+
+3、runserver运行Django项目，看一下项目是否能运行起来
+
+4、安装uwsgi，我在Windows上折腾了很久都不能安装，听说好像不能安装在Windows上，所以才来部署到linux上面
+
+4、项目根目录创建uwsgi.ini文件配置一下uwsgi，然后运行uwsgi，在Windows上面输入服务器公网ip:端口号看一下能不能访问，（这里注意是要输入云服务器的公网ip，由于输错成了私网ip一直错，还有比如你配的端口号是8080，但是你的服务器可能没有开这个端口，所以在window上面也访问不了，要去服务器的安全组那里给入方向加上8080这条规则）
+
+5、上面可以之后就先关掉uwsgi，然后下载安装Nginx，默认安装在user/local/nginx，然后启动Nginx，在nginx/sbin，输入./nginx就可以启动，然后在Windows上输入公网ip，就可以看到Nginx的欢迎界面了
+
+6、配置Nginx文件，nginx.conf，与uwsgi配合工作，并指向到静态文件的路径，然后重启Nginx，再启动uwsgi，到Windows输入服务器的公网ip就可以访问了（注意如果是把配置的内容文件合在了http的local里面，在Windows上输入公网ip就可以了，不用带上端口号，带上端口号反而访问不了，服了，原来自己已经弄好了，输多了端口号一直以为错了）
